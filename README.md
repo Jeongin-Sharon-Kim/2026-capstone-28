@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎯 Tenein — K-pop 안무 유사도 분석 시스템
+# 🎵 Tenein — K-pop 안무 유사도 분석 시스템
 
 **AI 기반 K-pop 안무 영상 비교 · 분석 · 보고서 자동 생성 웹 서비스**
 
