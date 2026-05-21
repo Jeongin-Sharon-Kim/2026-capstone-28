@@ -390,7 +390,7 @@ analyses (
 | 서비스 | 용도 |
 |-------|------|
 | Supabase | 인증 · PostgreSQL DB · Storage |
-| OpenAI API | GPT-4o-mini 보고서 생성 |
+| OpenAI API | GPT-5.1 보고서 생성 |
 
 ---
 
