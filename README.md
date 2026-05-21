@@ -71,19 +71,19 @@ PM / AI
 </td>
 
 <td align="center">
-<img width="387" height="387" alt="jeongin" src="https://github.com/user-attachments/assets/071ec714-a421-452d-a334-1573f4c09738" /><br/>
+<img width="200" height="200" alt="jeongin" src="https://github.com/user-attachments/assets/071ec714-a421-452d-a334-1573f4c09738" /><br/>
 <b> 김정인</b><br/>
 AI / QA
 </td>
 
 <td align="center">
-<img width="387" height="387" alt="moongyeong" src="https://github.com/user-attachments/assets/5a42d5a8-b0cb-4c51-856f-1c0b2d3d4689" /><br/>
+<img width="200" height="200" alt="moongyeong" src="https://github.com/user-attachments/assets/5a42d5a8-b0cb-4c51-856f-1c0b2d3d4689" /><br/>
 <b> 배문경</b><br/>
 AI / FE
 </td>
 
 <td align="center">
-<img width="387" height="387" alt="gyeongji" src="https://github.com/user-attachments/assets/ec33f2fb-bad0-4344-ac73-955fa77bf455" /><br/>
+<img width="200" height="200" alt="gyeongji" src="https://github.com/user-attachments/assets/ec33f2fb-bad0-4344-ac73-955fa77bf455" /><br/>
 <b> 백경지</b><br/>
 BE
 </td>
