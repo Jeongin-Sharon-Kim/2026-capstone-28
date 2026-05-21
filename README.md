@@ -333,7 +333,7 @@ analyses (
 │   │
 │   ├── main.py                          # FastAPI 진입점
 │   └── requirements.txt                 # Python 의존성
-
+```
 \```
 
 ### Frontend Architecture
