@@ -344,9 +344,12 @@ analyses (
 
 ## 📖 연구 성과
 
-####한국정보통신학회 26년 학술대회 발표예정
-<img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/f35c1acb-9ddb-47c9-9134-191205e3fb79" />
-
+### 한국정보통신학회 26년 학술대회 발표예정
+#### 멀티모달 기반 안무 유사도 검출 기술, 안무 유사도 분석 시스템 구축
+<div align="center">
+  <img width="45%" src="https://github.com/user-attachments/assets/0fa97d8e-9502-4786-809c-429765cbcf98" />
+  <img width="45%" src="https://github.com/user-attachments/assets/8f8be960-d398-4e10-9eb5-227086c61558" />
+</div>
 
 ---
 
