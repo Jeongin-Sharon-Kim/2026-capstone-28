@@ -334,35 +334,62 @@ analyses (
 ---
 ## 📚 사용 라이브러리
 
-### AI / 백엔드
+# 🛠 Tech Stack
 
-| 라이브러리 | 용도 | 라이센스 |
-|-----------|------|:-------:|
+## AI / Backend
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-black?style=for-the-badge)
+![HRNet](https://img.shields.io/badge/HRNet-W48-blue?style=for-the-badge)
+![MotionBERT](https://img.shields.io/badge/MotionBERT-purple?style=for-the-badge)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+
+| Library | Usage | License |
+|---|---|---|
 | PyTorch 2.x | 딥러닝 프레임워크 | BSD-3 |
 | FastAPI | REST API 서버 | MIT |
 | Ultralytics YOLOv8 | 인물 검출 | AGPL-3.0 |
-| HRNet-W48  | 2D 포즈 추출 | MIT |
+| HRNet-W48 | 2D 포즈 추출 | MIT |
 | MotionBERT | 모션 임베딩 | MIT |
 | LangChain | LLM 오케스트레이션 | MIT |
 | OpenCV 4.x | 영상 처리 | Apache-2.0 |
 | NumPy | 수치 연산 | BSD-3 |
 
-### 프론트엔드
+---
 
-| 라이브러리 | 용도 | 라이센스 |
-|-----------|------|:-------:|
+## Frontend
+
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+
+| Library | Usage | License |
+|---|---|---|
 | React 18 | UI 프레임워크 | MIT |
 | Vite 5 | 빌드 도구 | MIT |
 | @supabase/supabase-js | 인증 / DB / Storage | MIT |
 | @react-pdf/renderer | PDF 보고서 생성 | MIT |
 | buffer | Buffer 폴리필 | MIT |
 
-### 외부 서비스
+---
 
-| 서비스 | 용도 |
-|-------|------|
+## External Services
+
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+
+| Service | Usage |
+|---|---|
 | Supabase | 인증 · PostgreSQL DB · Storage |
-| OpenAI API | GPT-5.1 보고서 생성 |
+| OpenAI API | GPT 기반 자연어 분석 보고서 생성 |
+
+## Deployment
+
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![GitHubActions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)
 
 ---
 
