@@ -3,6 +3,8 @@
 # 🎵 Tenein — K-pop 안무 유사도 분석 시스템
 
 **AI 기반 K-pop 안무 영상 비교 · 분석 · 보고서 자동 생성 웹 서비스**
+<img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/c7d712bf-b262-4aec-ba73-295095736013" />
+
 
 [![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
