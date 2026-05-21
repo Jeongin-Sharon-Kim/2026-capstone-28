@@ -48,17 +48,38 @@ K-pop 안무 영상 간 유사도를 자동으로 분석하는 풀스택 AI 웹 
 
 ## 🎥 주요 화면
 
-### 인증 및 메인 화면
+<table>
+  <tr>
+    <th>로그인</th>
+    <th>홈 화면</th>
+    <th>영상 업로드</th>
+  </tr>
+  <tr>
+    <td><img src="./assets/images/login.png" width="300" /></td>
+    <td><img src="./assets/images/home.png" width="300" /></td>
+    <td><img src="./assets/images/upload.png" width="300" /></td>
+  </tr>
+  <tr>
+    <td align="center">이메일/구글 로그인</td>
+    <td align="center">영상 업로드 및 분석 시작</td>
+    <td align="center">두 K-pop 영상 선택</td>
+  </tr>
+</table>
 
-| 로그인 | 홈 | 프로필 |
-|:-----:|:--:|:-----:|
-| ![로그인](./assets/images/login.png) | ![홈](./assets/images/home.png) | ![프로필](./assets/images/profile.png) |
-
-### 분석 기능
-
-| 영상 업로드 | 분석 보고서 |
-|:----------:|:----------:|
-| ![업로드](./assets/images/upload.png) | ![보고서](./assets/images/report.png) |
+<table>
+  <tr>
+    <th>분석 보고서</th>
+    <th>사용자 프로필</th>
+  </tr>
+  <tr>
+    <td><img src="./assets/images/report.png" width="450" /></td>
+    <td><img src="./assets/images/profile.png" width="450" /></td>
+  </tr>
+  <tr>
+    <td align="center">구간별·부위별 유사도 분석 결과</td>
+    <td align="center">분석 히스토리 및 계정 관리</td>
+  </tr>
+</table>
 
 ---
 ## 👥 팀원 소개
