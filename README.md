@@ -342,13 +342,11 @@ analyses (
 
 ---
 
-## 📖 참고 문헌
+## 📖 연구 성과
 
-1. S. Yan et al., "Spatial Temporal Graph Convolutional Networks for Skeleton-Based Action Recognition," *AAAI*, 2018.
-2. W. Zhu et al., "MotionBERT: A Unified Perspective on Learning Human Motion Representations," *ICCV*, 2023.
-3. K. Sun et al., "Deep High-Resolution Representation Learning for Human Pose Estimation," *CVPR*, 2019.
-4. H. Sakoe and S. Chiba, "Dynamic Programming Algorithm Optimization for Spoken Word Recognition," *IEEE TASSP*, 1978.
-5. K. He et al., "Deep Residual Learning for Image Recognition," *CVPR*, 2016.
+####한국정보통신학회 26년 학술대회 발표예정
+<img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/f35c1acb-9ddb-47c9-9134-191205e3fb79" />
+
 
 ---
 
