@@ -75,9 +75,9 @@ K-pop 안무 영상 간 유사도를 자동으로 분석하는 풀스택 AI 웹 
 
 ## 🏗 시스템 아키텍처
 
-```
-![시스템 아키텍처](./assets/images/architecture.png)
-```
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/e9b490c2-0b7f-4a06-9ffc-8933eeccd66a" alt="시스템 아키텍처" width="900" />
+</div>
 
 ---
 
