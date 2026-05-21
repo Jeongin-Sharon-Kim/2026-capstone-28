@@ -52,7 +52,7 @@ K-pop 안무 영상 간 유사도를 자동으로 분석하는 풀스택 AI 웹 
 
 ### 🔐 인증 및 메인
 
-| 로그인 | 홈 화면 | 프로필 |
+| 로그인 | 메인 화면 | 프로필 및 히스토리 조회 |
 |:-----:|:------:|:-----:|
 | <img width="2735" height="1823" alt="Image" src="https://github.com/user-attachments/assets/6af9c0c6-e8df-4c18-bdc2-4d988b9a2c24" /> | <img width="2735" height="1556" alt="Image" src="https://github.com/user-attachments/assets/2a2a938b-0ca7-4c7e-8531-4a95b25426f5" />| <img width="2694" height="1549" alt="Image" src="https://github.com/user-attachments/assets/9be6e8c5-f70f-42db-8941-6eeeccbeb279" /> |
 
@@ -60,7 +60,7 @@ K-pop 안무 영상 간 유사도를 자동으로 분석하는 풀스택 AI 웹 
 
 | 영상 업로드 | 분석 보고서 |
 |:----------:|:----------:|
-|<img width="1449" height="1442" alt="Image" src="https://github.com/user-attachments/assets/d9944161-d8a7-4a25-9fd7-472d180d62c4" /> |<img width="2701" height="1401" alt="Image" src="https://github.com/user-attachments/assets/f4850894-5abc-4206-ab54-03e5d2af55fb" /> |
+|<img width="2701" height="1401" alt="Image" src="https://github.com/user-attachments/assets/f4850894-5abc-4206-ab54-03e5d2af55fb" /> |<img width="1449" height="1442" alt="Image" src="https://github.com/user-attachments/assets/d9944161-d8a7-4a25-9fd7-472d180d62c4" />|
 
 </div>
 
