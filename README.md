@@ -6,11 +6,9 @@
 <br/>
 *두 K-pop 안무 영상을 업로드하면 AI가 유사 구간을 탐지하고,*
 *신체 부위별 유사도를 분석하여 PDF 보고서를 자동 생성합니다.*
+
+
 <img width="1570" height="885" alt="image" src="https://github.com/user-attachments/assets/f1f2e40e-7191-480e-a950-465cc38467da" />
-
-
-
-<br/>
 
 </div>
 
