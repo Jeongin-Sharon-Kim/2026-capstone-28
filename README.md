@@ -3,13 +3,12 @@
 # 🎵 Tenein — K-pop 안무 유사도 분석 시스템
 
 **AI 기반 K-pop 안무 영상 비교 · 분석 · 보고서 자동 생성 웹 서비스**
+*두 K-pop 안무 영상을 업로드하면 AI가 유사 구간을 탐지하고,*
+*신체 부위별 유사도를 분석하여 PDF 보고서를 자동 생성합니다.*
 <img width="1200" height="700" alt="image" src="https://github.com/user-attachments/assets/c7d712bf-b262-4aec-ba73-295095736013" />
 
 
 <br/>
-
-*두 K-pop 안무 영상을 업로드하면 AI가 유사 구간을 탐지하고,*
-*신체 부위별 유사도를 분석하여 PDF 보고서를 자동 생성합니다.*
 
 </div>
 
