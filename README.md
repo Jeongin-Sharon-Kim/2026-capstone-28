@@ -207,6 +207,132 @@ analyses (
 
 -- Storage: videos 버킷 (public)
 ```
+```markdown
+## 📂 폴더 구조
+
+현재 공개 레포지토리 기준 구조입니다.
+📦 2026-capstone-28
+│
+├── 📄 README.md                         # 프로젝트 전체 설명서
+├── 📄 .gitignore
+│
+├── 📁 .github                           # GitHub Actions
+│   └── workflows
+│       └── deploy.yml                   # CI/CD 배포 워크플로우
+│
+├── 📁 assets                            # 정적 자산
+│   └── images
+│       └── poster.png                   # 프로젝트 포스터
+│
+├── 📁 frontend                          # 프론트엔드 (React + Vite)
+│   ├── 📁 public                        # 정적 파일
+│   │   ├── logo.png
+│   │   └── fonts
+│   │       ├── NotoSansKR-Bold.ttf
+│   │       └── NotoSansKR-Regular.ttf
+│   │
+│   ├── 📁 src
+│   │   ├── 📁 pages                     # 페이지 컴포넌트
+│   │   │   ├── Login.jsx                # 로그인/회원가입
+│   │   │   ├── home_page.jsx            # 영상 업로드
+│   │   │   ├── loading_page.jsx         # 분석 대기
+│   │   │   ├── result_page.jsx          # 분석 결과
+│   │   │   ├── profile_page.jsx         # 사용자 프로필
+│   │   │   └── about_us_page.jsx        # 서비스 소개
+│   │   │
+│   │   ├── 📁 hooks                     # Custom Hooks
+│   │   │   └── useIsMobile.js
+│   │   │
+│   │   ├── 📁 lib                       # 외부 라이브러리
+│   │   │   └── supabaseClient.js
+│   │   │
+│   │   ├── 📁 utils                     # 유틸리티
+│   │   │   └── generatePDF.jsx          # PDF 보고서 생성
+│   │   │
+│   │   ├── 📁 assets                    # 이미지 자산
+│   │   │   ├── background.png
+│   │   │   ├── pdf-cover-bg.png
+│   │   │   └── pdf-body-bg.png
+│   │   │
+│   │   ├── App.jsx                      # 메인 앱 컴포넌트
+│   │   └── main.jsx                     # React 진입점
+│   │
+│   ├── package.json
+│   ├── vite.config.js
+│   └── README.md
+│
+├── 📁 backend                           # 백엔드 (FastAPI + PyTorch)
+│   ├── 📁 api                           # REST API
+│   │   ├── router.py                    # API 라우터
+│   │   └── video_upload.py              # 영상 업로드 처리
+│   │
+│   ├── 📁 core                          # 핵심 설정
+│   │   ├── config.py                    # 환경 설정
+│   │   └── model_loader.py              # 모델 로더
+│   │
+│   ├── 📁 models                        # AI 모델
+│   │   ├── 📁 yolo
+│   │   │   └── detector.py              # YOLOv8 인물 검출
+│   │   ├── 📁 HRnet
+│   │   │   └── HRnet_loader.py          # HRNet-W48 포즈 추출
+│   │   ├── 📁 motion_bert
+│   │   │   ├── architecture.py          # MotionBERT 구조
+│   │   │   └── embedder.py              # 3D 임베딩 생성
+│   │   └── 📁 gcn_mlp
+│   │       ├── lightweight_gcn.py       # ST-GCN
+│   │       ├── siamese_mlp.py           # Siamese MLP
+│   │       └── inferencer.py            # 유사도 추론
+│   │
+│   ├── 📁 model_pipeline                # AI 파이프라인
+│   │   ├── analyze.py                   # 메인 분석 로직
+│   │   ├── object_extractor.py          # YOLO 객체 추출
+│   │   ├── object_processor.py          # HRNet 포즈 처리
+│   │   ├── bert_3d_lifting.py           # 2D→3D 변환
+│   │   ├── bert_embedder.py             # MotionBERT 임베딩
+│   │   ├── feature_extractor.py         # 특징 추출
+│   │   ├── stgcn_pose_encoder.py        # ST-GCN 인코더
+│   │   ├── pose_tag.py                  # Pose+Tag 멀티모달
+│   │   ├── tag_extractor.py             # Tag Feature 추출
+│   │   ├── inferrence.py                # 유사도 추론
+│   │   ├── report.py                    # LLM 보고서 생성
+│   │   └── result_formatter.py          # 결과 포맷팅
+│   │
+│   ├── 📁 repository                    # 데이터 레포지토리
+│   │   └── video_repository.py
+│   │
+│   ├── 📁 schemas                       # API 스키마
+│   │   ├── analyze_schemas.py
+│   │   └── video.py
+│   │
+│   ├── 📁 utils                         # 유틸리티
+│   │   ├── ffmpeg_utils.py              # 영상 처리
+│   │   ├── supabase_client.py           # Supabase 클라이언트
+│   │   └── validation.py                # 입력 검증
+│   │
+│   ├── main.py                          # FastAPI 진입점
+│   └── requirements.txt                 # Python 의존성
+```
+\```
+
+### Frontend Architecture
+프론트엔드는 React 18 + Vite 5 기반 SPA 구조입니다.
+
+| 디렉터리 | 역할 |
+|----------|------|
+| `pages/` | 라우트 단위 페이지 (Login, Home, Result 등) |
+| `hooks/` | Custom React Hooks (모바일 감지 등) |
+| `lib/` | 외부 라이브러리 클라이언트 (Supabase) |
+| `utils/` | 유틸리티 함수 (PDF 생성, 포맷팅) |
+
+### Backend Architecture
+백엔드는 7단계 AI 파이프라인 중심으로 구성됩니다.
+
+| 디렉터리 | 역할 |
+|----------|------|
+| `api/` | REST API 엔드포인트 |
+| `models/` | AI 모델 구현 (YOLO, HRNet, MotionBERT, GCN) |
+| `model_pipeline/` | 7단계 처리 로직 (추출→임베딩→추론→보고서) |
+| `utils/` | 영상 처리, DB 연결, 검증 |
 
 ---
 
