@@ -6,17 +6,6 @@
 <img width="1200" height="700" alt="image" src="https://github.com/user-attachments/assets/c7d712bf-b262-4aec-ba73-295095736013" />
 
 
-[![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev)
-[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org)
-[![Supabase](https://img.shields.io/badge/Supabase-Auth%20·%20DB%20·%20Storage-3FCF8E?logo=supabase&logoColor=white)](https://supabase.com)
-
-<br/>
-
-
-
 <br/>
 
 *두 K-pop 안무 영상을 업로드하면 AI가 유사 구간을 탐지하고,*
