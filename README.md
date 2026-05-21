@@ -337,7 +337,7 @@ analyses (
 | 🔐 | **Supabase Auth** | 사용자 인증 (이메일/비밀번호, Google OAuth) |
 | 🗄 | **Supabase DB** | PostgreSQL — 분석 결과, 사용자 프로필 저장 |
 | 📁 | **Supabase Storage** | 업로드 영상 파일 관리 (videos 버킷) |
-| 🤖 | **OpenAI API** | GPT-4o-mini 기반 분석 보고서 생성 |
+| 🤖 | **OpenAI API** | GPT-5.1 기반 분석 보고서 생성 |
  
 ### 배포 흐름
  
