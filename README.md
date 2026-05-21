@@ -231,8 +231,8 @@ analyses (
 
 ## 📂 폴더 구조
 ```
-
 현재 공개 레포지토리 기준 구조입니다.
+
 📦 2026-capstone-28
 │
 ├── 📄 README.md                         # 프로젝트 전체 설명서
@@ -333,7 +333,7 @@ analyses (
 │   │
 │   ├── main.py                          # FastAPI 진입점
 │   └── requirements.txt                 # Python 의존성
-```
+
 \```
 
 ### Frontend Architecture
