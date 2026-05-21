@@ -48,38 +48,23 @@ K-pop 안무 영상 간 유사도를 자동으로 분석하는 풀스택 AI 웹 
 
 ## 🎥 주요 화면
 
-<table>
-  <tr>
-    <th>로그인</th>
-    <th>홈 화면</th>
-    <th>영상 업로드</th>
-  </tr>
-  <tr>
-    <td><img src="./assets/images/login.png" width="300" /></td>
-    <td><img src="./assets/images/home.png" width="300" /></td>
-    <td><img src="./assets/images/upload.png" width="300" /></td>
-  </tr>
-  <tr>
-    <td align="center">이메일/구글 로그인</td>
-    <td align="center">영상 업로드 및 분석 시작</td>
-    <td align="center">두 K-pop 영상 선택</td>
-  </tr>
-</table>
+<div align="center">
 
-<table>
-  <tr>
-    <th>분석 보고서</th>
-    <th>사용자 프로필</th>
-  </tr>
-  <tr>
-    <td><img src="./assets/images/report.png" width="450" /></td>
-    <td><img src="./assets/images/profile.png" width="450" /></td>
-  </tr>
-  <tr>
-    <td align="center">구간별·부위별 유사도 분석 결과</td>
-    <td align="center">분석 히스토리 및 계정 관리</td>
-  </tr>
-</table>
+### 🔐 인증 및 메인
+
+| 로그인 | 홈 화면 | 프로필 |
+|:-----:|:------:|:-----:|
+| <img width="2735" height="1823" alt="Image" src="https://github.com/user-attachments/assets/6af9c0c6-e8df-4c18-bdc2-4d988b9a2c24" /> | <img width="2735" height="1556" alt="Image" src="https://github.com/user-attachments/assets/2a2a938b-0ca7-4c7e-8531-4a95b25426f5" />| <img width="2694" height="1549" alt="Image" src="https://github.com/user-attachments/assets/9be6e8c5-f70f-42db-8941-6eeeccbeb279" /> |
+
+### 🎬 분석 기능
+
+| 영상 업로드 | 분석 보고서 |
+|:----------:|:----------:|
+|<img width="1449" height="1442" alt="Image" src="https://github.com/user-attachments/assets/d9944161-d8a7-4a25-9fd7-472d180d62c4" /> |<img width="2701" height="1401" alt="Image" src="https://github.com/user-attachments/assets/f4850894-5abc-4206-ab54-03e5d2af55fb" /> |
+
+</div>
+
+
 
 ---
 ## 👥 팀원 소개
