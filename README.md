@@ -42,7 +42,23 @@ K-pop 안무 영상 간 유사도를 자동으로 분석하는 풀스택 AI 웹 
 | 📄 **PDF 내보내기** | 분석 결과를 PDF 보고서로 다운로드 |
 | 👤 **분석 히스토리** | 과거 분석 기록 조회 및 상세 보기 |
 
+## 🎥 시연 영상
+
 프로젝트 시연 및 소개 영상 링크 : https://youtu.be/C7zSym6TCzI
+
+## 🎥 주요 화면
+
+### 인증 및 메인 화면
+
+| 로그인 | 홈 | 프로필 |
+|:-----:|:--:|:-----:|
+| ![로그인](./assets/images/login.png) | ![홈](./assets/images/home.png) | ![프로필](./assets/images/profile.png) |
+
+### 분석 기능
+
+| 영상 업로드 | 분석 보고서 |
+|:----------:|:----------:|
+| ![업로드](./assets/images/upload.png) | ![보고서](./assets/images/report.png) |
 
 ---
 ## 👥 팀원 소개
