@@ -320,23 +320,11 @@ analyses (
 4. ECR에 이미지 Push
 5. EC2에서 최신 이미지 Pull + 컨테이너 재시작
 ```
- 
-### 통신 구조
- 
-| 구간 | 프로토콜 | 포트 |
-|------|:------:|:----:|
-| User ↔ Frontend | HTTPS | 443 |
-| Frontend ↔ Backend | HTTP | 8000 |
-| Frontend ↔ Supabase Auth | HTTPS | 443 |
-| Backend ↔ Supabase DB/Storage | HTTPS | 443 |
-| Backend ↔ OpenAI API | HTTPS | 443 |
 
 ---
-## 📚 사용 라이브러리
+##  🛠 Tech Stack
 
-# 🛠 Tech Stack
-
-## AI / Backend
+#### AI / Backend
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
@@ -346,46 +334,18 @@ analyses (
 ![MotionBERT](https://img.shields.io/badge/MotionBERT-purple?style=for-the-badge)
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
 
-| Library | Usage | License |
-|---|---|---|
-| PyTorch 2.x | 딥러닝 프레임워크 | BSD-3 |
-| FastAPI | REST API 서버 | MIT |
-| Ultralytics YOLOv8 | 인물 검출 | AGPL-3.0 |
-| HRNet-W48 | 2D 포즈 추출 | MIT |
-| MotionBERT | 모션 임베딩 | MIT |
-| LangChain | LLM 오케스트레이션 | MIT |
-| OpenCV 4.x | 영상 처리 | Apache-2.0 |
-| NumPy | 수치 연산 | BSD-3 |
-
----
-
-## Frontend
+#### Frontend
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-| Library | Usage | License |
-|---|---|---|
-| React 18 | UI 프레임워크 | MIT |
-| Vite 5 | 빌드 도구 | MIT |
-| @supabase/supabase-js | 인증 / DB / Storage | MIT |
-| @react-pdf/renderer | PDF 보고서 생성 | MIT |
-| buffer | Buffer 폴리필 | MIT |
-
----
-
-## External Services
+#### External Services
 
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-| Service | Usage |
-|---|---|
-| Supabase | 인증 · PostgreSQL DB · Storage |
-| OpenAI API | GPT 기반 자연어 분석 보고서 생성 |
-
-## Deployment
+#### Deployment
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![GitHubActions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
