@@ -65,7 +65,7 @@ K-pop 안무 영상 간 유사도를 자동으로 분석하는 풀스택 AI 웹 
 <tr>
 
 <td align="center">
-<img width="387" height="387" alt="suman" src="https://github.com/user-attachments/assets/150f446a-a4ce-4106-8cb9-c8a67a3394e5" /><br/>
+<img width="200" height="200" alt="suman" src="https://github.com/user-attachments/assets/150f446a-a4ce-4106-8cb9-c8a67a3394e5" /><br/>
 <b> 김수만(팀장)</b><br/>
 PM / AI
 </td>
@@ -78,6 +78,7 @@ AI / QA
 
 <td align="center">
 <img width="387" height="387" alt="moongyeong" src="https://github.com/user-attachments/assets/5a42d5a8-b0cb-4c51-856f-1c0b2d3d4689" /><br/>
+<b> 배문경</b><br/>
 AI / FE
 </td>
 
