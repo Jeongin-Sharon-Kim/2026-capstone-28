@@ -24,7 +24,7 @@
 - [AI 모델 파이프라인](#-ai-모델-파이프라인)
 - [웹 서비스](#-웹-서비스)
 - [AWS 배포 아키텍처](#-aws-배포-아키텍처)
-- [참고 문헌](#-참고-문헌)
+- [연구 성과](#-연구-성과)
 
 ---
 
@@ -117,77 +117,6 @@ BE
 <div align="center">
   <img src="https://github.com/user-attachments/assets/e9b490c2-0b7f-4a06-9ffc-8933eeccd66a" alt="시스템 아키텍처" width="900" />
 </div>
-
----
-
-## 🧠 AI 모델 파이프라인
-
-### 전체 구조
-
-```
-영상 입력
-  → YOLOv8 (인물 검출)
-  → Pose Estimation (2D 포즈 추출, 17관절)
-  → H36M 관절 변환
-  → MotionBERT (임베딩 생성, [F, 17, 512])
-  → LightweightGCN + BodyPartMotionPooling (유사도 계산)
-  → 정적 구간 필터링 + Top 25% 선별
-  → LangChain + GPT-5.1 (자연어 보고서)
-  → JSON 응답
-```
-
-### 핵심 기술
-
-<details>
-<summary><b>포즈 추출</b></summary>
-
-- YOLOv8으로 프레임별 인물 바운딩 박스 검출
-- HRnet으로 COCO 17 관절 추출
-- 10fps 프레임 샘플링
-
-</details>
-
-<details>
-<summary><b>MotionBERT 임베딩</b></summary>
-
-- DSTformer 아키텍처 (dim_feat=512, depth=5)
-- Frozen (학습 없음) — 순수 feature extractor로 사용
-- `return_rep=True`로 512차원 임베딩 벡터 출력
-- 5초 단위 segment 분할
-
-</details>
-
-<details>
-<summary><b>유사도 추론 (GCN)</b></summary>
-
-- LightweightGCN: 512 → 256 → 128 (skip connection)
-- BodyPartMotionPooling: 17관절 → 5개 부위 (왼팔, 오른팔, 왼다리, 오른다리, 몸통)
-- 시간축 velocity 기반 가중 풀링
-- Cross Matching: A×B similarity matrix → 각 A segment의 best match 탐색
-- 정적 구간 자동 필터링 (std < threshold)
-- 상위 25% 구간 선별 (최소 1개 보장)
-
-</details>
-
-<details>
-<summary><b>LLM 보고서 생성</b></summary>
-
-- LangChain + ChatOpenAI (GPT-5.1)
-- Pydantic 스키마로 구조화된 JSON 출력
-- 출력: summary, interpretation, key_differences, segments[].description
-- SimilarSegment(id, time_a, time_b, description) 구조
-
-</details>
-
-### AI 모델 성능
-
-| 모델 구성 | Val Correlation |
-|:---------|:---------------:|
-| MediaPipe + BERT + GCN | 0.8653 |
-| Pose-only (ST-GCN) | 0.9272 |
-| Pose + HRNet Feature | 0.9570 |
-| 3D + Velocity + Bone + Skip (GCN) | 0.9711 |
-| **Pose + Tag 멀티모달 (최종)** | **0.9766** |
 
 ---
 
@@ -344,13 +273,12 @@ analyses (
 
 ## 📖 연구 성과
 
-### 한국정보통신학회 26년 학술대회 발표예정
+### KICS(한국통신학회) 26년 학술대회 발표예정
 #### 멀티모달 기반 안무 유사도 검출 기술, 안무 유사도 분석 시스템 구축
 <div align="center">
   <img width="45%" src="https://github.com/user-attachments/assets/0fa97d8e-9502-4786-809c-429765cbcf98" />
   <img width="45%" src="https://github.com/user-attachments/assets/8f8be960-d398-4e10-9eb5-227086c61558" />
 </div>
-
 ---
 
 <div align="center">
