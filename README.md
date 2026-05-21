@@ -54,22 +54,39 @@ K-pop 안무 영상 간 유사도를 자동으로 분석하는 풀스택 AI 웹 
 | 👤 **분석 히스토리** | 과거 분석 기록 조회 및 상세 보기 |
 
 프로젝트 시연 및 소개 영상 링크 : https://youtu.be/C7zSym6TCzI
+
 ---
-
-## 👥 팀 소개
-
-### 팀명: Tenein
-
+## 👥 Team : Tenein
 > *Tenein — 고대어로 "안무"를 뜻합니다.*
 
-| 이름 | 역할 |
-|:----:|------|
-| 김수만 | AI 모델 설계, LLM 연동, BE , UI/UX 개발|
-| 김정인 | AI 모델 설계, pose+tag multi modal model 개발 |
-| 배문경 | AI 모델 설계, DB 설계, FE |
-| 백경지 | 백엔드 개발, API 설계,인프라 구축 |
+<table>
+<tr>
 
-**지도교수:** 윤수연 (국민대학교 소프트웨어융합대학)
+<td align="center">
+<img width="387" height="387" alt="suman" src="https://github.com/user-attachments/assets/150f446a-a4ce-4106-8cb9-c8a67a3394e5" /><br/>
+<b> 김수만(팀장)</b><br/>
+PM / AI
+</td>
+
+<td align="center">
+<img width="387" height="387" alt="jeongin" src="https://github.com/user-attachments/assets/071ec714-a421-452d-a334-1573f4c09738" /><br/>
+<b> 김정인</b><br/>
+AI / QA
+</td>
+
+<td align="center">
+<img width="387" height="387" alt="moongyeong" src="https://github.com/user-attachments/assets/5a42d5a8-b0cb-4c51-856f-1c0b2d3d4689" /><br/>
+AI / FE
+</td>
+
+<td align="center">
+<img width="387" height="387" alt="gyeongji" src="https://github.com/user-attachments/assets/ec33f2fb-bad0-4344-ac73-955fa77bf455" /><br/>
+<b> 백경지</b><br/>
+BE
+</td>
+
+</tr>
+</table>
 
 ---
 
