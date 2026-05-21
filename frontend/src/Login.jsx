@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import bgImage from "./assets/background.png";
 import { supabase } from "./lib/supabaseClient";
+import { useIsMobile } from "./hooks/useIsMobile";
 
 // ===== Color tokens =====
 const C = {
@@ -19,9 +20,12 @@ export default function Login({ onLogin }) {
   const [pw, setPw] = useState("");
   const [showPw, setShowPw] = useState(false);
   const [remember, setRemember] = useState(false);
+  const [signupName, setSignupName] = useState("");
+  const [pwConfirm, setPwConfirm] = useState("");
   
   // ⭐ 로그인/회원가입 모드 전환
   const [mode, setMode] = useState("login"); // "login" or "signup"
+  const isMobile = useIsMobile();
 
   // 이메일 로그인
   const handleLogin = async () => {
@@ -41,27 +45,42 @@ export default function Login({ onLogin }) {
   };
 
   // 이메일 회원가입
-const handleSignUp = async () => {
-  if (!email || !pw) {
-    alert("회원가입을 위해 이메일과 비밀번호를 모두 입력해주세요.");
-    return;
-  }
-  if (pw.length < 6) {
-    alert("비밀번호는 최소 6자 이상이어야 합니다.");
-    return;
-  }
-  const { data, error } = await supabase.auth.signUp({
-    email: email,
-    password: pw,
-  });
-  if (error) {
-    console.error("회원가입 에러:", error); // 자세한 에러 확인
-    alert(`회원가입 실패: ${error.message}`);
-    return;
-  }
-  alert("회원가입 성공! 이메일을 확인하여 계정을 활성화해주세요.");
-  setMode("login");
-};
+  const handleSignUp = async () => {
+    if (!signupName || !email || !pw || !pwConfirm) {
+      alert("모든 항목을 입력해주세요.");
+      return;
+    }
+    if (pw !== pwConfirm) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+    if (pw.length < 6) {
+      alert("비밀번호는 최소 6자 이상이어야 합니다.");
+      return;
+    }
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: pw,
+      options: {
+        data: { user_name: signupName },
+      },
+    });
+    if (error) {
+      console.error("회원가입 에러:", error);
+      alert(`회원가입 실패: ${error.message}`);
+      return;
+    }
+    if (data?.user) {
+      await supabase.from("profiles").upsert({
+        id: data.user.id,
+        user_name: signupName,
+      });
+    }
+    alert("회원가입 성공! 이메일을 확인하여 계정을 활성화해주세요.");
+    setSignupName("");
+    setPwConfirm("");
+    setMode("login");
+  };
 
 
   // ⭐⭐⭐ 구글 로그인/회원가입
@@ -88,13 +107,23 @@ const handleSignUp = async () => {
   };
 
   return (
-    <div style={styles.root}>
+    <div style={{
+      ...styles.root,
+      ...(isMobile ? {
+        gridTemplateColumns: "1fr",
+        padding: "0 5%",
+        gap: 0,
+        alignItems: "center",
+        justifyItems: "center",
+      } : {}),
+    }}>
       <link
         href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Rajdhani:wght@500;600;700&display=swap"
         rel="stylesheet"
       />
       <div style={styles.bgLayer} />
       <div style={styles.bgTint} />
+      {!isMobile && (
       <div style={styles.left}>
         <div style={styles.badge}>
           <span style={styles.badgeDot} />
@@ -123,13 +152,23 @@ const handleSignUp = async () => {
           ))}
         </div>
       </div>
-      <div style={styles.cardWrap}>
+      )}
+      <div style={{
+        ...styles.cardWrap,
+        ...(isMobile ? { width: "100%", justifySelf: "center" } : {}),
+      }}>
         <div style={styles.cardGlow} />
-        <div style={styles.card}>
+        <div style={{
+          ...styles.card,
+          ...(isMobile ? { padding: "36px 24px 28px", borderRadius: 24 } : {}),
+        }}>
           <div style={styles.cardSheen} />
           <div style={styles.cardAccent} />
           <div style={styles.cardHeader}>
-            <h2 style={styles.cardTitle}>
+            <h2 style={{
+              ...styles.cardTitle,
+              ...(isMobile ? { fontSize: 28 } : {}),
+            }}>
               {mode === "login" ? "로그인" : "회원가입"}
             </h2>
             <p style={styles.cardSub}>
@@ -138,6 +177,18 @@ const handleSignUp = async () => {
                 : "새 계정을 만들어 분석을 시작하세요"}
             </p>
           </div>
+          {mode === "signup" && (
+            <Field label="닉네임">
+              <InputBox
+                icon="👤"
+                type="text"
+                placeholder="사용할 닉네임"
+                value={signupName}
+                onChange={(e) => setSignupName(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handlePrimaryAction()}
+              />
+            </Field>
+          )}
           <Field label="이메일">
             <InputBox
               icon="✉"
@@ -167,6 +218,24 @@ const handleSignUp = async () => {
               }
             />
           </Field>
+          {mode === "signup" && (
+            <>
+              <Field label="비밀번호 확인">
+                <InputBox
+                  icon="🔒"
+                  type={showPw ? "text" : "password"}
+                  placeholder="비밀번호 재입력"
+                  value={pwConfirm}
+                  onChange={(e) => setPwConfirm(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handlePrimaryAction()}
+                />
+                {pwConfirm && pw !== pwConfirm && (
+                  <div style={styles.errorHint}>비밀번호가 일치하지 않습니다</div>
+                )}
+              </Field>
+            </>
+          )}
+
 
           {/* 로그인 모드일 때만 표시 */}
           {mode === "login" && (
@@ -494,6 +563,13 @@ const styles = {
     borderRadius: 8,
     borderLeft: `3px solid ${C.emerald}`,
   },
+  errorHint: {
+  fontSize: 11,
+  color: "#D32F2F",
+  marginTop: 6,
+  paddingLeft: 4,
+  fontWeight: 600,
+},
   primaryBtn: {
     width: "100%",
     padding: "16px",
