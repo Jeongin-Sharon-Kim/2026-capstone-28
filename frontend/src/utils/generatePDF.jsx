@@ -317,7 +317,7 @@ const SummaryPage = ({ data }) => (
       )}
       {data.keyDifferences?.length > 0 && (
         <View wrap={false}>
-          <Text style={s.sectionTitle}>주요 차이점</Text>
+          <Text style={s.sectionTitle}>주요 공통점</Text>
           {data.keyDifferences.map((diff, i) => (
             <View key={i} style={s.diffItem}>
               <Text style={s.diffBullet}>•</Text>
