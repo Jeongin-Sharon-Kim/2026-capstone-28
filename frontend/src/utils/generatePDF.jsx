@@ -438,40 +438,11 @@ const TeneinReport = ({ data, screenshots }) => (
    8. 데이터 정규화
    ================================================================ */
 function normalizeData(raw) {
-  if (raw.overall) {
-    return {
-      score: raw.overall.score ?? 0,
-      interpretation: raw.overall.interpretation || "",
-      summary: raw.summary || "",
-      keyDifferences: raw.key_similarities || [],
-      segments: (raw.segments || []).map((seg) => {
-        const pA = parseTimeStr(seg.timeA);
-        const pB = parseTimeStr(seg.timeB);
-        console.log(pA)
-        console.log(pB)
-        return {
-          id: seg.id, score: seg.score ?? null,
-          timeA: seg.timeA || "", timeB: seg.timeB || "",
-          startA: pA?.start ?? null, endA: pA?.end ?? null,
-          startB: pB?.start ?? null, endB: pB?.end ?? null,
-          description: seg.desc || seg.description || "",
-        };
-      }),
-      titleA: raw.titleA || "Video A",
-      titleB: raw.titleB || "Video B",
-      videoUrlA: raw.videoUrlA || null,
-      videoUrlB: raw.videoUrlB || null,
-      date: raw.date || todayStr(),
-      analysisId: raw.analysisId || raw.video_a_id || null,
-      analyzedAt: raw.analyzedAt || nowStr(),
-      elapsed: raw.elapsed || null,
-    };
-  }
   return {
     score: raw.similarity ?? 0,
     interpretation: raw.interpretation || "",
     summary: raw.summary || "",
-    keyDifferences: raw.keyDifferences || [],
+    keyDifferences: raw.keySimilarities || [],
     segments: (raw.segments || []).map((seg) => {
       const pA = parseTimeStr(seg.timeA);
       const pB = parseTimeStr(seg.timeB);

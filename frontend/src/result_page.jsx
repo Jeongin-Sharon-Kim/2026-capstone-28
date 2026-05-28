@@ -72,17 +72,33 @@ export default function ResultPage({ onNavigate, result }) {
   const [openId, setOpenId] = useState(null);
   const isMobile = useIsMobile();
 
+  const data = result || MOCK_RESULT;
+
   const [pdfLoading, setPdfLoading] = useState(false);
   const handlePDF = async () => {
     setPdfLoading(true);
     try {
-      await generatePDF(data);
+      const item = {
+        id: data.video_a_id ?? null,
+        date: new Date().toLocaleDateString("ko-KR"),
+        similarity: data.overall?.score ?? 0,
+        summary: data.summary || "",
+        interpretation: data.overall?.interpretation || "",
+        thumbA: data.video_url_a || null,
+        thumbB: data.video_url_b || null,
+        segments: (data.segments || []).map((seg) => ({
+          id: seg.id,
+          timeA: formatTime(seg.video_a),
+          timeB: formatTime(seg.video_b),
+          desc: seg.description || "",
+        })),
+        keySimilarities: data.key_similarities || [],
+      };
+      await generatePDF(item);
     } finally {
       setPdfLoading(false);
     }
   };
-
-  const data = result || MOCK_RESULT;
 
   return (
     <div style={styles.root}>
