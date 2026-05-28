@@ -17,7 +17,12 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/2026-capstone-28
-            git pull origin main
+            # 로컬 변경사항 무시하고 무조건 main 브랜치 최신화
+            git fetch --all
+            git reset --hard origin/main
+            
+            # 컨테이너 내리고, 캐시 없이 완전 새 빌드 후 실행
             docker compose down
-            docker compose up -d --build
+            docker compose build --no-cache
+            docker compose up -d
             echo "✅ 배포 완료: $(date)"
