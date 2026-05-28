@@ -295,10 +295,6 @@ const CoverPage = ({ data }) => (
           <Text style={s.coverInfoValue}>#{data.analysisId}</Text>
         </View>
       )}
-      <View style={s.coverScoreWrap}>
-        <Text style={s.coverScoreNum}>{data.score ?? 0}%</Text>
-        <Text style={s.coverScoreLabel}>전체 유사도</Text>
-      </View>
     </View>
   </Page>
 );
@@ -376,24 +372,23 @@ const SegmentCard = ({ seg, screenshots }) => {
   );
 };
 
+// 단일 Page + wrap=true 로 두고 SegmentCard에는 wrap={false}를 유지하면
+// react-pdf가 카드를 페이지에 채우다 공간이 부족하면 다음 페이지로 흘려준다.
+// 배경 이미지는 페이지마다 자동 반복되도록 fixed 사용.
 const SegmentsPage = ({ data, screenshots }) => (
-  <>
-    {(data.segments || []).map((seg, i) => (
-      <Page key={seg.id} size="A4" style={s.bodyPage}>
-        <View style={s.bgWrap}>
-          <Image src={bodyBg} style={s.pageBgImg} />
-        </View>
-        <View style={s.bodyContent}>
-          {i === 0 && (
-            <Text style={s.sectionTitle}>
-              유사 구간 분석 ({data.segments.length}개)
-            </Text>
-          )}
-          <SegmentCard seg={seg} screenshots={screenshots} />
-        </View>
-      </Page>
-    ))}
-  </>
+  <Page size="A4" style={s.bodyPage} wrap>
+    <View style={s.bgWrap} fixed>
+      <Image src={bodyBg} style={s.pageBgImg} />
+    </View>
+    <View style={s.bodyContent}>
+      <Text style={s.sectionTitle}>
+        유사 구간 분석 ({(data.segments || []).length}개)
+      </Text>
+      {(data.segments || []).map((seg) => (
+        <SegmentCard key={seg.id} seg={seg} screenshots={screenshots} />
+      ))}
+    </View>
+  </Page>
 );
 
 const FooterPage = ({ data }) => (

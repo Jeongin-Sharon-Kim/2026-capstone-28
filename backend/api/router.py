@@ -3,6 +3,7 @@
 HTTP 요청을 받아 pipeline.analyze() 함수에 위임하고,
 완료 후 analyses 테이블의 result_data를 UPDATE한다.
 """
+import asyncio
 import logging
 from typing import Optional
 
@@ -14,6 +15,12 @@ from utils.supabase_client import get_supabase
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
+
+# 단일 GPU에서 동시 forward는 VRAM 압박 + 직렬화로 오히려 느려진다.
+# 분석은 한 번에 하나만 GPU에 들어가도록 게이트하고, 나머지는 대기열로 흐른다.
+# VRAM/성능 측정 후 값 상향 가능.
+_ANALYZE_CONCURRENCY = 1
+_analyze_semaphore = asyncio.Semaphore(_ANALYZE_CONCURRENCY)
 
 
 # ===== 요청 schema =====
@@ -38,7 +45,13 @@ async def analyze_videos(req: AnalyzeRequest):
         logger.info(f"분석 요청: A={req.video_a_id}, B={req.video_b_id}, analysis_id={req.analysis_id}")
 
         # ── 분석 실행 ────────────────────────────────────
-        result = analyze(req.video_a_id, req.video_b_id)
+        # 1) 세마포어로 동시 분석 수 제한 → GPU OOM/슬로다운 방지
+        # 2) to_thread로 동기 CPU/GPU 작업을 워커 스레드에 위임 →
+        #    이벤트 루프 살아있어 업로드/health 등 다른 요청은 계속 처리됨
+        async with _analyze_semaphore:
+            result = await asyncio.to_thread(
+                analyze, req.video_a_id, req.video_b_id
+            )
 
         # ── analyses 테이블 UPDATE ────────────────────────
         if req.analysis_id is not None:

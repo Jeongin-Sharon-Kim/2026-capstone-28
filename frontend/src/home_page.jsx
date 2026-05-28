@@ -37,21 +37,21 @@ export default function HomePage({ onNavigate, onAnalyze }) {
       return;
     }
 
+    // 세션은 업로드 전에 먼저 확인해야 분석 화면 위에서 알림을 띄울 수 있다.
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+
     setError(null);
     setIsLoading(true);
 
+    // 업로드도 수십 초가 걸릴 수 있으므로, 검증/세션 통과 즉시 로딩 화면으로 전환.
+    // 실패 시 onNavigate("analyse")로 돌아온다.
+    if (onNavigate) onNavigate("loading");
+
     try {
-
-      // Supabase 로그인 토큰 가져오기, 원래거
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        alert("로그인이 필요합니다.");
-        setIsLoading(false);
-        return;
-      } 
-
-      //const session = { access_token: "test-token" };
-
       const form = new FormData();
       if (videoA) form.append("video_a", videoA);
       if (videoB) form.append("video_b", videoB);
@@ -69,16 +69,18 @@ export default function HomePage({ onNavigate, onAnalyze }) {
       const result = await res.json();
 
       if (!res.ok) {
-        // validation.py에서 보내는 에러 메시지 표시
-        setError(result.detail);
+        // validation.py에서 보내는 에러 메시지 → 분석 화면으로 복귀 후 알림
+        alert(`업로드 실패: ${result.detail || "알 수 없는 오류"}`);
+        if (onNavigate) onNavigate("analyse");
         return;
       }
 
-      // 성공 → 결과 페이지로 이동
+      // 성공 → App.handleAnalyze가 /api/analyze 호출 (이미 로딩 화면)
       if (onAnalyze) onAnalyze(result.video_a.vid, result.video_b.vid, result.analysis_id);
 
     } catch (e) {
-      setError("서버 연결에 실패했습니다. 백엔드 서버가 실행 중인지 확인해주세요.");
+      alert("서버 연결에 실패했습니다. 백엔드 서버가 실행 중인지 확인해주세요.");
+      if (onNavigate) onNavigate("analyse");
     } finally {
       setIsLoading(false);
     }

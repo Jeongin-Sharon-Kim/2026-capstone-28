@@ -19,8 +19,10 @@ GCN_MLP_WEIGHTS = MODELS_DIR / "gcn_mlp" / "weights" / "best_global_model.pth"
 MEDIAPIPE_POSE_TASK = MODELS_DIR / "mediapipe" / "pose_landmarker_full.task"
 
 # ===== 디바이스 =====
-# 로컬 환경은 GPU 없음 → 항상 CPU
-DEVICE = "cpu"
+# 로컬은 CPU, 배포된 GPU EC2는 cuda.
+# 여기서 torch를 import하면 main.py의 OMP 스레드 예산 설정 순서가 깨지므로
+# env로만 분기한다. 배포 환경에서는 TENEIN_DEVICE=cuda 를 설정한다.
+DEVICE = os.getenv("TENEIN_DEVICE", "cpu")
 
 # ===== CPU 스레드 예산 =====
 # analyze.py가 두 영상을 ThreadPoolExecutor로 병렬 처리할 때,

@@ -1,3 +1,4 @@
+import asyncio
 import uuid
 import shutil
 import yt_dlp
@@ -19,10 +20,13 @@ router = APIRouter()
 # 이어지는 /api/analyze 단계에서 repository.fetch_video가 바로 재사용한다.
 TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
+import os
+
+COOKIE_PATH = os.path.join(os.path.dirname(__file__), "cookies.txt")
+
 def download_youtube_video(url: str, output_path: Path) -> None:
     if not url or ("youtube.com" not in url and "youtu.be" not in url):
         raise HTTPException(status_code=400, detail="유튜브 URL만 입력할 수 있습니다.")
-    # playlist 전체 다운로드 방지
     url = url.split("&list=")[0]
 
     ydl_opts = {
@@ -33,12 +37,15 @@ def download_youtube_video(url: str, output_path: Path) -> None:
         "noplaylist": True,
     }
 
+    # 쿠키 파일이 존재하면 추가
+    if os.path.exists(COOKIE_PATH):
+        ydl_opts["cookiefile"] = COOKIE_PATH
+
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"URL 영상 다운로드 실패: {e}")
-
 
 # ─────────────────────────────────────────────────────────────
 #  토큰에서 user_id 추출 (Supabase JWT 검증)
@@ -158,35 +165,43 @@ async def upload_videos(
         validate_size(dummy_file_b, bytes_b)
 
     try:
-        # ── Step 4: 영상 길이 검증 (ffprobe, blocking → threadpool) ──
-        duration_a = await run_in_threadpool(validate_duration, tmp_raw_a, title_a)
-        duration_b = await run_in_threadpool(validate_duration, tmp_raw_b, title_b)
+        # ── Step 4: 영상 길이 검증 (ffprobe, A/B 병렬) ───────────────
+        duration_a, duration_b = await asyncio.gather(
+            run_in_threadpool(validate_duration, tmp_raw_a, title_a),
+            run_in_threadpool(validate_duration, tmp_raw_b, title_b),
+        )
 
-        # ── Step 5: 코덱 변환 (ffmpeg, blocking → threadpool) ────────
-        await run_in_threadpool(convert_to_h264, tmp_raw_a, tmp_out_a, title_a)
-        await run_in_threadpool(convert_to_h264, tmp_raw_b, tmp_out_b, title_b)
+        # ── Step 5: 코덱 변환 (ffmpeg, A/B 병렬) ─────────────────────
+        # CPU 무거운 단계 — 두 영상 동시 변환으로 총 시간 ≒ max(A, B)
+        await asyncio.gather(
+            run_in_threadpool(convert_to_h264, tmp_raw_a, tmp_out_a, title_a),
+            run_in_threadpool(convert_to_h264, tmp_raw_b, tmp_out_b, title_b),
+        )
 
-        codec_a = await run_in_threadpool(get_video_codec, tmp_out_a)
-        codec_b = await run_in_threadpool(get_video_codec, tmp_out_b)
+        codec_a, codec_b = await asyncio.gather(
+            run_in_threadpool(get_video_codec, tmp_out_a),
+            run_in_threadpool(get_video_codec, tmp_out_b),
+        )
 
-        # ── Step 6: Supabase Storage 업로드 ──────────────────────────
+        # ── Step 6: Supabase Storage 업로드 (A/B 병렬) ───────────────
+        # 네트워크 I/O — 동시 업로드로 총 시간 ≒ max(A, B)
         sb = get_supabase()
 
         storage_path_a = f"{user_id}/{session_id}_a.mp4"
         storage_path_b = f"{user_id}/{session_id}_b.mp4"
 
-        with open(tmp_out_a, "rb") as f:
-            sb.storage.from_("videos").upload(
-                storage_path_a,
-                f.read(),
-                file_options={"content-type": "video/mp4"},
-            )
-        with open(tmp_out_b, "rb") as f:
-            sb.storage.from_("videos").upload(
-                storage_path_b,
-                f.read(),
-                file_options={"content-type": "video/mp4"},
-            )
+        def _upload_to_storage(path: Path, storage_path: str) -> None:
+            with open(path, "rb") as f:
+                sb.storage.from_("videos").upload(
+                    storage_path,
+                    f.read(),
+                    file_options={"content-type": "video/mp4"},
+                )
+
+        await asyncio.gather(
+            run_in_threadpool(_upload_to_storage, tmp_out_a, storage_path_a),
+            run_in_threadpool(_upload_to_storage, tmp_out_b, storage_path_b),
+        )
 
         # Storage URL 생성
         video_url_a = sb.storage.from_("videos").get_public_url(storage_path_a)
