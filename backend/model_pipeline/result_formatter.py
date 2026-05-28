@@ -15,7 +15,7 @@ video_a_id, video_b_id로 Supabase에서 영상 URL을 조회해 함께 반환.
   {
     video_a_id, video_b_id, video_url_a, video_url_b,
     overall: {score, interpretation},
-    summary, key_differences,
+    summary, key_similarities,
     segments: [{id, score, video_a, video_b, description, body_parts}, ...]
   }
 """
@@ -91,7 +91,7 @@ def format_result(analyze_result: dict) -> dict:
         "video_url_b": video_url_b,
         "overall": overall,
         "summary": agent_report.get("summary", ""),
-        "data.key_similarities": agent_report.get("key_similarities", []),
+        "key_similarities": agent_report.get("key_similarities", []),
         "segments": segments,
     }
 

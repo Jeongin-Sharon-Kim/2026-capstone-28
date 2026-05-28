@@ -77,7 +77,7 @@ export default function ProfilePage({ onNavigate }) {
                 : "날짜 없음",
               similarity: isCompleted ? (rd.overall?.score ?? 0) : null,
               tag: isCompleted
-                ? (rd.key_differences?.[0] || "분석 완료")
+                ? (rd.key_similarities?.[0] || rd.key_differences?.[0] || "분석 완료")
                 : "분석 중",
               summary: isCompleted
                 ? (rd.summary || "요약 없음")

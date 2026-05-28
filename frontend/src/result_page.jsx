@@ -44,7 +44,7 @@ const MOCK_RESULT = {
   video_url_b: null,
   overall: { score: 78.6, interpretation: "전체 유사도 해석이 여기 표시됩니다." },
   summary: "두 K-pop 뮤직비디오의 안무 패턴을 비교 분석한 결과입니다.",
-  key_differences: [
+  key_similarities: [
     "안무 동작의 기본 구조가 매우 유사함",
     "음악 비트에 맞춘 타이밍이 일치",
     "신체 각도 및 포지셔닝에 높은 유사성",
@@ -201,7 +201,7 @@ export default function ResultPage({ onNavigate, result }) {
                 <div style={styles.reportBlock}>
                   <div style={styles.reportLabel}>✨ 주요 공통점</div>
                   <ul style={styles.featureList}>
-                    {data.key_differences.map((f, i) => (
+                    {(data.key_similarities || []).map((f, i) => (
                       <li key={i} style={styles.featureItem}>
                         <span style={styles.featureBullet}>•</span>
                         {f}

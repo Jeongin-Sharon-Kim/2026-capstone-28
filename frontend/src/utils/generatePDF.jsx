@@ -443,7 +443,7 @@ function normalizeData(raw) {
       score: raw.overall.score ?? 0,
       interpretation: raw.overall.interpretation || "",
       summary: raw.summary || "",
-      keyDifferences: raw.key_differences || [],
+      keyDifferences: raw.key_similarities || [],
       segments: (raw.segments || []).map((seg) => {
         const pA = parseTimeStr(seg.timeA);
         const pB = parseTimeStr(seg.timeB);
