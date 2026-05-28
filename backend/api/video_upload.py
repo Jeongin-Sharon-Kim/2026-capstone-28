@@ -30,7 +30,7 @@ def download_youtube_video(url: str, output_path: Path) -> None:
     url = url.split("&list=")[0]
 
     ydl_opts = {
-        "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+        "format": "best[ext=mp4]/best",
         "merge_output_format": "mp4",
         "outtmpl": str(output_path),
         "quiet": True,
