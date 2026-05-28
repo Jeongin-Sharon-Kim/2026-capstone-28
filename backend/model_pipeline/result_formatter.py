@@ -91,7 +91,7 @@ def format_result(analyze_result: dict) -> dict:
         "video_url_b": video_url_b,
         "overall": overall,
         "summary": agent_report.get("summary", ""),
-        "key_differences": agent_report.get("key_differences", []),
+        "data.key_similarities": agent_report.get("key_similarities", []),
         "segments": segments,
     }
 
