@@ -157,7 +157,7 @@ export default function ResultPage({ onNavigate, result }) {
               }}>전체 유사도 분석 결과</h3>
 
               <div style={{ display: "flex", justifyContent: "center", marginBottom: isMobile ? 20 : 28 }}>
-                <CircleScore value={data.overall.score} isMobile={isMobile} />
+                <SegmentCountDisplay count={data.segments?.length || 0} isMobile={isMobile} />
               </div>
 
               <p style={{
@@ -330,14 +330,13 @@ export default function ResultPage({ onNavigate, result }) {
    Sub Components
    ========================================================= */
 
-const CircleScore = ({ value, isMobile }) => {
+const SegmentCountDisplay = ({ count, isMobile }) => {
   const size = isMobile ? 120 : 150;
   const inner = isMobile ? 94 : 118;
-  const deg = value * 3.6;
   return (
     <div style={{
       width: size, height: size, borderRadius: "50%",
-      background: `conic-gradient(${C.emerald} ${deg}deg, rgba(200,242,220,0.5) 0)`,
+      background: `conic-gradient(${C.emerald} 360deg, rgba(200,242,220,0.5) 0)`,
       display: "flex", alignItems: "center", justifyContent: "center",
       boxShadow: `0 8px 30px rgba(46,139,87,0.25)`, flexShrink: 0,
     }}>
@@ -348,12 +347,12 @@ const CircleScore = ({ value, isMobile }) => {
         boxShadow: "inset 0 1px 0 rgba(255,255,255,1)",
       }}>
         <div style={{
-          fontSize: isMobile ? 24 : 30, fontWeight: 700, color: C.deep,
-          fontFamily: "'Chakra Petch',sans-serif", letterSpacing: -1,
+          fontSize: isMobile ? 32 : 40, fontWeight: 700, color: C.deep,
+          fontFamily: "'Chakra Petch',sans-serif", letterSpacing: -1, lineHeight: 1,
         }}>
-          {value}%
+          {count}
         </div>
-        <div style={{ fontSize: 11, color: C.emerald, marginTop: 2 }}>유사도</div>
+        <div style={{ fontSize: 11, color: C.emerald, marginTop: 4, fontWeight: 600 }}>구간 검출</div>
       </div>
     </div>
   );
