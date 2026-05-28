@@ -134,7 +134,7 @@ export default function ResultPage({ onNavigate, result }) {
       <main style={{
         ...styles.main,
         ...(isMobile ? {
-          gridTemplateColumns: "1fr",
+          gridTemplateColumns: "minmax(0, 1fr)",
           padding: "85px 4% 40px",
           gap: 24,
         } : {}),
@@ -260,7 +260,14 @@ export default function ResultPage({ onNavigate, result }) {
                         ...styles.segmentTime,
                         ...(isMobile ? { fontSize: 11 } : {}),
                       }}>
-                        A&nbsp;{formatTime(s.video_a)}&nbsp;&nbsp;↔&nbsp;&nbsp;B&nbsp;{formatTime(s.video_b)}
+                        {isMobile ? (
+                          <>
+                            <div>A {formatTime(s.video_a)}</div>
+                            <div>B {formatTime(s.video_b)}</div>
+                          </>
+                        ) : (
+                          <>A {formatTime(s.video_a)} &nbsp;↔&nbsp; B {formatTime(s.video_b)}</>
+                        )}
                       </div>
                     </div>
                     <div style={{
@@ -468,7 +475,7 @@ const BodyPartsAvg = ({ segments }) => {
 const styles = {
   root: {
     position: "relative", minHeight: "100vh", width: "100%",
-    overflow: "hidden", fontFamily: "'Rajdhani','Chakra Petch',sans-serif",
+    overflowX: "hidden", fontFamily: "'Rajdhani','Chakra Petch',sans-serif",
     color: C.text, boxSizing: "border-box",
   },
   bgLayer: {
@@ -531,6 +538,7 @@ const styles = {
   },
   scoreCard: {
     position: "relative", zIndex: 1, padding: "36px 40px", borderRadius: 28,
+    boxSizing: "border-box", width: "100%",
     background: "linear-gradient(155deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.4) 50%, rgba(200,242,220,0.3) 100%)",
     backdropFilter: "blur(36px) saturate(180%)", WebkitBackdropFilter: "blur(36px) saturate(180%)",
     border: "1px solid rgba(255,255,255,0.8)",
@@ -572,6 +580,7 @@ const styles = {
   countText: { fontSize: 18, color: C.emerald, fontWeight: 700 },
   reportCard: {
     position: "relative", zIndex: 1, padding: "32px 36px", borderRadius: 24,
+    boxSizing: "border-box", width: "100%",
     background: "linear-gradient(155deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.4) 100%)",
     backdropFilter: "blur(28px) saturate(170%)", WebkitBackdropFilter: "blur(28px) saturate(170%)",
     border: "1px solid rgba(255,255,255,0.8)",
@@ -585,11 +594,12 @@ const styles = {
   },
   reportText: { fontSize: 15, color: C.text, lineHeight: 1.85, margin: 0, fontWeight: 500 },
   featureList: { listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 },
-  featureItem: { fontSize: 14, color: C.text, display: "flex", gap: 10, lineHeight: 1.7, fontWeight: 500 },
+  featureItem: { fontSize: 14, color: C.text, display: "flex", gap: 10, lineHeight: 1.7, fontWeight: 500, minWidth: 0, wordBreak: "break-word" },
   featureBullet: { color: C.emerald, fontWeight: 700, flexShrink: 0, fontSize: 16 },
   segmentList: { display: "flex", flexDirection: "column", gap: 14 },
   segmentCard: {
     position: "relative", padding: "18px 22px", borderRadius: 20,
+    boxSizing: "border-box", width: "100%",
     background: "linear-gradient(155deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.4) 100%)",
     backdropFilter: "blur(24px) saturate(170%)", WebkitBackdropFilter: "blur(24px) saturate(170%)",
     border: "1px solid rgba(255,255,255,0.8)",
